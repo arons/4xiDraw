@@ -2420,11 +2420,10 @@ class laser_gcode(inkex.Effect):
         self.OptionParser.add_option("-d", "--directory",                       action="store", type="string",          dest="directory",                           default="",                             help="Output directory")
         self.OptionParser.add_option("-f", "--filename",                        action="store", type="string",          dest="file",                                default="output.gcode",                 help="File name")            
         self.OptionParser.add_option("",   "--add-numeric-suffix-to-filename",  action="store", type="inkbool",         dest="add_numeric_suffix_to_filename",      default=False,                          help="Add numeric suffix to file name")  
-        self.OptionParser.add_option("",   "--laser-command",                   action="store", type="string",          dest="laser_command",                       default="M03",                      help="Laser gcode command")
-        self.OptionParser.add_option("",   "--laser-off-command",               action="store", type="string",          dest="laser_off_command",                   default="M05",                         help="Laser gcode end command")       
+        self.OptionParser.add_option("",   "--laser-on-command",                action="store", type="string",          dest="laser_on_command",                    default="M03",                          help="Laser gcode command")
+        self.OptionParser.add_option("",   "--laser-off-command",               action="store", type="string",          dest="laser_off_command",                   default="M05",                          help="Laser gcode end command")       
         self.OptionParser.add_option("",   "--laser-speed",                     action="store", type="int",             dest="laser_speed",                         default="100",                          help="Laser speed (mm/min)")
         self.OptionParser.add_option("",   "--travel-speed",                    action="store", type="string",          dest="travel_speed",                        default="3000",                         help="Travel speed (mm/min)")
-        self.OptionParser.add_option("",   "--laser-power",                     action="store", type="int",             dest="laser_power",                         default="256",                          help="S# is 256 or 10000 for full power")
         self.OptionParser.add_option("",   "--passes",                          action="store", type="int",             dest="passes",                              default="1",                            help="Quantity of passes")
         self.OptionParser.add_option("",   "--pass-depth",                      action="store", type="string",          dest="pass_depth",                          default="1",                            help="Depth of laser cut")
         self.OptionParser.add_option("",   "--power-delay",                     action="store", type="string",          dest="power_delay",                         default="100",                          help="Laser power-on delay (ms)")
@@ -2434,7 +2433,8 @@ class laser_gcode(inkex.Effect):
         self.OptionParser.add_option("",   "--engraving-draw-calculation-paths",action="store", type="inkbool",         dest="engraving_draw_calculation_paths",    default=False,                          help="Draw additional graphics to debug engraving path")
         self.OptionParser.add_option("",   "--unit",                            action="store", type="string",          dest="unit",                                default="G21 (All units in mm)",        help="Units either mm or inches")
         self.OptionParser.add_option("",   "--active-tab",                      action="store", type="string",          dest="active_tab",                          default="",                             help="Defines which tab is active")
-        self.OptionParser.add_option("",   "--biarc-max-split-depth",           action="store", type="int",             dest="biarc_max_split_depth",               default="4",                            help="Defines maximum depth of splitting while approximating using biarcs.")                
+        self.OptionParser.add_option("",   "--biarc-max-split-depth",           action="store", type="int",             dest="biarc_max_split_depth",               default="4",                            help="Defines maximum depth of splitting while approximating using biarcs.")
+        self.OptionParser.add_option("",   "--draw-result",                     action="store", type="inkbool",         dest="draw_result",                         default=False,                          help="Draw result")                
         
     def parse_curve(self, p, layer, w = None, f = None):
             c = []
@@ -3061,7 +3061,10 @@ class laser_gcode(inkex.Effect):
                         p += csp
                 dxfpoints=sort_dxfpoints(dxfpoints)
                 curve = self.parse_curve(p, layer)
-                self.draw_curve(curve, layer, biarc_group)
+                
+                if self.options.draw_result:
+                    self.draw_curve(curve, layer, biarc_group)
+                     
                 gcode += self.generate_gcode(curve, layer, 0)
             
         self.export_gcode(gcode)
@@ -3173,7 +3176,7 @@ class laser_gcode(inkex.Effect):
             "id": "Laser Engraver",
             "penetration feed": self.options.laser_speed,
             "feed": self.options.laser_speed,
-            "gcode before path": ("G4 P0 \n" + self.options.laser_command + "\nG4 P" + self.options.power_delay),
+            "gcode before path": ("G4 P0 \n" + self.options.laser_on_command + "\nG4 P" + self.options.power_delay),
             "gcode after path": ("G4 P0 \n" + self.options.laser_off_command + "\n" + "G1 F" + self.options.travel_speed),
         }
 

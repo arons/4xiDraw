@@ -6,11 +6,10 @@
 	<dependency type="executable" location="extensions">4xidraw.py</dependency>
 
 
-	<param name="laser-command" type="string" _gui-text="Laser ON Command:">M03</param>
-	<param name="laser-off-command" type="string" _gui-text="Laser OFF Command:">M05</param>
-	<param name="travel-speed" type="int" min="0" max="10000" _gui-text="Travel Speed (mm/min or in/min):">3000</param>
-	<param name="laser-speed" type="int" min="0" max="4000" _gui-text="Laser Speed (mm/min or in/min):">100</param>
-	<param name="laser-power" type="int" min="0" max="20000" _gui-text="Laser Power S# (0-255 or 0-12000):">255</param>
+	<param name="laser-on-command" type="string" _gui-text="ON Command:">M05 S255</param>
+	<param name="laser-off-command" type="string" _gui-text="OFF Command:">M03 S255</param>
+	<param name="travel-speed" type="int" min="0" max="10000" _gui-text="OFF Speed (mm/min or in/min):">5000</param>
+	<param name="laser-speed" type="int" min="0" max="4000" _gui-text="ON Speed (mm/min or in/min):">5000</param>
 	<param name="power-delay" type="float" min="0" max="1000" _gui-text="Power-On Delay (ms or s):">0</param>	
 	<param name="passes" type="int" min="1" max="100" _gui-text="Passes:">1</param>
 	<param name="pass-depth" type="float" min="0" max="10" _gui-text="Pass Depth (mm or in):">1</param>
@@ -23,6 +22,8 @@
     <item value="G20 (All units in inches)">in</item>
   </param>
 
+    <param name="draw-result" type="boolean" _gui-text="Draw result">false</param>
+    
 	<effect>
 		<effects-menu>
 			<submenu _name="4xiDraw Gcode"/>
