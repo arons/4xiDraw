@@ -1,6 +1,7 @@
 #!/usr/bin/env python 
 """
-Modified by Jay Johnson 2015, J Tech Photonics, Inc., jtechphotonics.com 
+modified by Renzo Dani 2017, arons7@gmail.com
+modified by Jay Johnson 2015, J Tech Photonics, Inc., jtechphotonics.com 
 modified by Adam Polak 2014, polakiumengineering.org
 
 based on Copyright (C) 2009 Nick Drobchenko, nick@cnc-club.ru
