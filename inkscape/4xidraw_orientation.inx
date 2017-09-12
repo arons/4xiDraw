@@ -5,10 +5,14 @@
 	<dependency type="executable" location="extensions">4xidraw_orientation.py</dependency>
 	<dependency type="executable" location="extensions">inkex.py</dependency>
 
-    <param name="unit" type="enum" _gui-text="All Units (mm or in):">
-        <item value="G21 (All units in mm)">mm</item>
-        <item value="G20 (All units in inches)">in</item>
-    </param>
+<_param indent="1" name="splashpage" type="description" appearance="header">
+Welcome to the 4xiDraw interface!
+</_param>
+<_param indent="2" name="splashpage2" type="description" xml:space="preserve" >
+This extension assume the units are in mm.
+Press 'Apply' to add orientation bar without any scale.
+</_param>
+
     
 	<effect>
 		<effects-menu>

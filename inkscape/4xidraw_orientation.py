@@ -71,7 +71,7 @@ class laser_gcode(inkex.Effect):
     
     def __init__(self):
         inkex.Effect.__init__(self)
-        self.OptionParser.add_option("",   "--unit",                            action="store", type="string",          dest="unit",                                default="G21 (All units in mm)",        help="Units either mm or inches")
+        #self.OptionParser.add_option("",   "--unit",                            action="store", type="string",          dest="unit",                                default="G21 (All units in mm)",        help="Units either mm or inches")
                
 ################################################################################
 ###        Errors handling function, notes are just printed into Logfile, 
@@ -246,14 +246,9 @@ class laser_gcode(inkex.Effect):
             
         print_("Document height: " + str(doc_height));
             
-        if self.options.unit == "G21 (All units in mm)" : 
-            points = [[0.,0.,0.],[100.,0.,0.],[0.,100.,0.]]
-            orientation_scale = 3.5433070660
-            print_("orientation_scale < 0 ===> switching to mm units=%0.10f"%orientation_scale )
-        elif self.options.unit == "G20 (All units in inches)" :
-            points = [[0.,0.,0.],[5.,0.,0.],[0.,5.,0.]]
-            orientation_scale = 90
-            print_("orientation_scale < 0 ===> switching to inches units=%0.10f"%orientation_scale )
+        points = [[0.,0.,0.],[100.,0.,0.],[0.,100.,0.]]
+        orientation_scale = 1 #3.5433070660
+        print_("orientation_scale < 0 ===> switching to mm units=%0.10f"%orientation_scale )
 
         points = points[:2]
 
