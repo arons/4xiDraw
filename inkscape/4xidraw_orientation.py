@@ -285,7 +285,7 @@ class laser_gcode(inkex.Effect):
 ################################################################################
     def logDebug(self,msg):
                 try:
-                        with open("laser-orientation-debug.log", "a") as myfile:
+                        with open("4xidraw-orientation-debug.log", "a") as myfile:
                                 myfile.write('%s\n' % msg)
                 except:
 	                 print_("Error logging debug data.")             

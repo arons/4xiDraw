@@ -1,6 +1,7 @@
 #!/usr/bin/env python 
 """
-Modified by Jay Johnson 2015, J Tech Photonics, Inc., jtechphotonics.com 
+modified by Renzo Dani 2017, arons7@gmail.com
+modified by Jay Johnson 2015, J Tech Photonics, Inc., jtechphotonics.com 
 modified by Adam Polak 2014, polakiumengineering.org
 
 based on Copyright (C) 2009 Nick Drobchenko, nick@cnc-club.ru
@@ -3133,7 +3134,7 @@ class laser_gcode(inkex.Effect):
 ################################################################################
     def logDebug(self,msg):
                 try:
-                        with open("laser-debug.log", "a") as myfile:
+                        with open("4xidraw-debug.log", "a") as myfile:
                                 myfile.write('%s\n' % msg)
                 except:
 	                 print_("Error logging debug data.")             

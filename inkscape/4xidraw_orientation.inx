@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <_name>Add orientation</_name>
-    <id>fourxidraw.arons.ch</id>
-	<dependency type="executable" location="extensions">laser_orientation.py</dependency>
+    <id>orientation.fourxidraw.arons.ch</id>
+	<dependency type="executable" location="extensions">4xidraw_orientation.py</dependency>
 	<dependency type="executable" location="extensions">inkex.py</dependency>
 
     <param name="unit" type="enum" _gui-text="All Units (mm or in):">
@@ -12,13 +12,13 @@
     
 	<effect>
 		<effects-menu>
-			<submenu _name="Generate Laser Gcode"/>
+			<submenu _name="4xiDraw Gcode"/>
 		</effects-menu>
 		<object-type>path</object-type>
   	</effect>
 
 	<script>
-		<command reldir="extensions" interpreter="python">laser_orientation.py</command>
+		<command reldir="extensions" interpreter="python">4xidraw_orientation.py</command>
 	</script>
 
 
