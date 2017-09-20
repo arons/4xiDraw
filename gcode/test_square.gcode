@@ -11,9 +11,9 @@ G1  X0 Y0; go to zero
 ;
 M05 S255; lever down pen
 ;
-G2 X0 Y50
-G2 X50 Y50
-G2 X50 Y0
-G2 X0 Y0
+G1 X0 Y50
+G1 X50 Y50
+G1 X50 Y0
+G1 X0 Y0
 ;
 M03 S255; lever up pen

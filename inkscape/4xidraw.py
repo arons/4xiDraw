@@ -2412,7 +2412,7 @@ class laser_gcode(inkex.Effect):
         for x in range(1,self.options.passes):
             gcode += "G91\nG1 Z-" + self.options.pass_depth + "\nG90\n" + gcode_pass
         f = open(self.options.directory+self.options.file, "w")
-        f.write(self.options.laser_off_command + "\n" + self.header + "G1 F" + self.options.travel_speed + "\n" + gcode + self.footer)
+        f.write(self.options.laser_off_command + "\nG4 P" + self.options.power_delay + "\n" + self.header + "G1 F" + self.options.travel_speed + "\n" + gcode + self.footer)
         f.close()
 
     def __init__(self):
@@ -3176,8 +3176,8 @@ class laser_gcode(inkex.Effect):
             "id": "Laser Engraver",
             "penetration feed": self.options.laser_speed,
             "feed": self.options.laser_speed,
-            "gcode before path": ("G4 P0 \n" + self.options.laser_on_command + "\nG4 P" + self.options.power_delay),
-            "gcode after path": ("G4 P0 \n" + self.options.laser_off_command + "\n" + "G1 F" + self.options.travel_speed),
+            "gcode before path": ("G4 P0 \n" + self.options.laser_on_command  + "\nG4 P" + self.options.power_delay ),
+            "gcode after path":  ("G4 P0 \n" + self.options.laser_off_command + "\nG4 P" + self.options.power_delay + "\n" + "G1 F" + self.options.travel_speed),
         }
 
         self.get_info()
